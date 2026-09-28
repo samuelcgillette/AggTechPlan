@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Agg Tech Club Finances</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #F6F7F2;
+    --paper: #FFFFFF;
+    --ink: #1E2620;
+    --muted: #5A665C;
+    --rule: #DCE1D6;
+    --accent: #2F6B45;
+    --accent-soft: #E6EFE5;
+    --wheat: #9A7424;
+    --wheat-soft: #F5EEDC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #141915;
+      --paper: #1B221D;
+      --ink: #E4E9E1;
+      --muted: #9DA99F;
+      --rule: #2E3830;
+      --accent: #7FC194;
+      --accent-soft: #1F3326;
+      --wheat: #D9B25E;
+      --wheat-soft: #2E2817;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #141915;
+    --paper: #1B221D;
+    --ink: #E4E9E1;
+    --muted: #9DA99F;
+    --rule: #2E3830;
+    --accent: #7FC194;
+    --accent-soft: #1F3326;
+    --wheat: #D9B25E;
+    --wheat-soft: #2E2817;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 15px/1.55 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding-inline: 16px;
+    padding-block: 32px 48px;
+  }
+  .sheet {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: clamp(20px, 5vw, 44px);
+    display: grid;
+    gap: 22px;
+  }
+  header { display: grid; gap: 6px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+  .eyebrow {
+    font-size: 11.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--accent);
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 600; font-size: clamp(26px, 5vw, 34px); line-height: 1.15; margin: 0;
+    text-wrap: balance;
+  }
+  .lede { margin: 4px 0 0; color: var(--muted); max-width: 64ch; }
+
+  h2 {
+    font-size: 12px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 8px;
+  }
+  section p { margin: 0; max-width: 66ch; }
+  ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+  li::marker { color: var(--accent); }
+  strong { font-weight: 600; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
+  @media (max-width: 620px) { .cols { grid-template-columns: 1fr; } }
+
+  .flow {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  @media (max-width: 620px) { .flow { grid-template-columns: 1fr; } }
+  .flow div {
+    background: var(--accent-soft); border-radius: 4px; padding: 10px 12px; display: grid; gap: 2px;
+  }
+  .flow .amt { font-weight: 600; font-variant-numeric: tabular-nums; font-size: 17px; }
+  .flow .lbl { font-size: 13px; color: var(--muted); }
+
+  .tracks-intro { color: var(--muted); font-size: 14px; margin: 0 0 12px; max-width: 66ch; }
+  .records { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  @media (max-width: 620px) { .records { grid-template-columns: 1fr; } }
+  .record { border: 1px solid var(--rule); border-radius: 4px; padding: 12px 14px; display: grid; gap: 6px; }
+  .record h3 { margin: 0; font-size: 15px; font-weight: 600; }
+  .record .what { margin: 0; font-size: 13.5px; color: var(--muted); }
+  .record dl { margin: 4px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 5px 12px; font-size: 13.5px; }
+  .record dt { font-weight: 500; }
+  .record dd { margin: 0; color: var(--muted); }
+  .calc {
+    display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-soft); border-radius: 3px; padding: 0 5px; margin-right: 4px;
+    vertical-align: 1px;
+  }
+
+  .questions {
+    background: var(--wheat-soft); border-radius: 4px; padding: 16px 18px;
+  }
+  .questions h2 { color: var(--wheat); }
+  .questions ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .questions li::marker { color: var(--wheat); font-weight: 600; }
+  .questions .hint { color: var(--muted); font-size: 13.5px; }
+
+  footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px; }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <header>
+    <span class="eyebrow">Project overview · Utah State Agricultural Technology Club</span>
+    <h1>Agg Tech Club Finances</h1>
+    <p class="lede">A web app for tracking the club's money and projects in one place: who funds each project, what comes in, what gets spent, and how much is left in each account.</p>
+  </header>
+
+  <div class="cols">
+    <section>
+      <h2>What users can do</h2>
+      <ul>
+        <li>Add a record with a simple form</li>
+        <li>Browse every record in a list, and open any one to see its full details</li>
+        <li>Delete records, with a warning before anything linked is removed too</li>
+        <li>Mark a purchase as resolved once it's paid</li>
+        <li>See both account balances at a glance on the dashboard</li>
+      </ul>
+    </section>
+    <section>
+      <h2>How money moves</h2>
+      <div class="flow" style="grid-template-columns: 1fr;">
+        <div><span class="amt">$4,000 → Expenses</span><span class="lbl">Recorded automatically as the budget for each new project</span></div>
+        <div><span class="amt">$1,000 → Operations</span><span class="lbl">Recorded automatically for the club's general fund with each new project</span></div>
+        <div><span class="amt">Purchases −</span><span class="lbl">Reduce the project budget right away, and the account balance once resolved</span></div>
+      </div>
+    </section>
+  </div>
+
+  <section>
+    <h2>What it tracks</h2>
+    <p class="tracks-intro">Every record also gets an ID number and the date it was created and last updated. Fields marked <span class="calc">Calc</span> are worked out by the app from other records, never typed in.</p>
+    <div class="records">
+      <article class="record">
+        <h3>Owner</h3>
+        <p class="what">A person or group who owns and funds projects.</p>
+        <dl>
+          <dt>Name</dt><dd>Required</dd>
+          <dt>Email</dt><dd>Required, must be a valid address</dd>
+          <dt>Phone number</dt><dd>Optional</dd>
+          <dt>Address</dt><dd>Optional</dd>
+          <dt>Total paid</dt><dd><span class="calc">Calc</span>All income that came from this owner</dd>
+        </dl>
+      </article>
+
+      <article class="record">
+        <h3>Project</h3>
+        <p class="what">A club project, funded by one owner.</p>
+        <dl>
+          <dt>Name</dt><dd>Required</dd>
+          <dt>Owner</dt><dd>Required; pick an existing owner or add a new one</dd>
+          <dt>Overview</dt><dd>Optional notes and specs</dd>
+          <dt>Active</dt><dd>Yes or no; new projects start inactive</dd>
+          <dt>Team members</dt><dd>To be decided</dd>
+          <dt>Budget balance</dt><dd><span class="calc">Calc</span>Project income into Expenses, minus its part purchases</dd>
+        </dl>
+      </article>
+
+      <article class="record">
+        <h3>Income</h3>
+        <p class="what">Money coming into the club.</p>
+        <dl>
+          <dt>Amount</dt><dd>Required, more than $0</dd>
+          <dt>Account</dt><dd>Required: Operations or Expenses</dd>
+          <dt>Source</dt><dd>Required: an owner, or a written description (e.g. a fundraiser)</dd>
+          <dt>Project</dt><dd>Optional; income doesn't have to belong to a project</dd>
+        </dl>
+      </article>
+
+      <article class="record">
+        <h3>Purchase</h3>
+        <p class="what">Money going out of the club.</p>
+        <dl>
+          <dt>Total</dt><dd>Required, more than $0</dd>
+          <dt>Account</dt><dd>Required: the account it's paid from</dd>
+          <dt>Vendor</dt><dd>Who it was bought from</dd>
+          <dt>Description</dt><dd>Why it was bought</dd>
+          <dt>Resolved</dt><dd>Yes or no; set once it's paid</dd>
+        </dl>
+      </article>
+
+      <article class="record">
+        <h3>Part purchase</h3>
+        <p class="what">A part bought for a specific project. Creating one also creates its matching purchase.</p>
+        <dl>
+          <dt>Part number</dt><dd>Required</dd>
+          <dt>Cost per unit</dt><dd>Required, more than $0</dd>
+          <dt>Number of units</dt><dd>Required, at least 1</dd>
+          <dt>Project</dt><dd>Required</dd>
+          <dt>Received</dt><dd>Yes or no; starts as no</dd>
+          <dt>Purchase</dt><dd>Linked automatically; holds the vendor, description, account, and resolved status</dd>
+          <dt>Total</dt><dd><span class="calc">Calc</span>Cost per unit × number of units</dd>
+        </dl>
+      </article>
+
+      <article class="record">
+        <h3>Account</h3>
+        <p class="what">The club's two accounts. These are fixed; users don't add new ones.</p>
+        <dl>
+          <dt>Name</dt><dd>Operations or Expenses</dd>
+          <dt>Balance</dt><dd><span class="calc">Calc</span>Income into the account, minus resolved purchases from it</dd>
+          <dt>Pending</dt><dd><span class="calc">Calc</span>Purchases from the account not yet resolved</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="questions">
+    <h2>Open questions</h2>
+    <ol>
+      <li>Should the app require people to log in? If so, who gets access, and should some users (like the treasurer) be able to do more than others?</li>
+      <li>How should project teams be tracked? Is a simple list of names enough, or should each member have their own record?</li>
+      <li>What else should a project record? <span class="hint">For example: start and end dates, a faculty advisor, goals, or statuses beyond active and inactive.</span></li>
+      <li>Should records be editable after they're created, or only deleted and re-entered?</li>
+      <li>Will the $4,000 and $1,000 amounts per project always stay the same?</li>
+      <li>Are there any other features this project needs?</li>
+    </ol>
+  </section>
+
+  <footer>Built on the club's existing web app starter (React, Express, PostgreSQL). Detailed requirements are tracked as issues in Linear.</footer>
+</main>
+</body>
+</html>
